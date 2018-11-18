@@ -1,0 +1,140 @@
+type Card {
+  advancementCost: Int
+  agendaPoints: Int
+  baseLink: Int
+  cost: Int
+  cycle: Cycle!
+  deckLimit: Int!
+  faction: Faction!
+  factionCost: Int
+  flavor: String
+  id: String!
+  illustrator: String!
+  influenceLimit: Int
+  keyword: Keyword
+  memoryCost: Int
+  minimumDeckSize: Int
+  pack: Pack!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  strength: Int
+  text: String
+  title: String!
+  trashCost: Int
+  type: Type!
+  uniqueness: Boolean!
+}
+
+enum Cycle {
+  CREATIONANDCONTROL
+  DATAANDDESTINY
+  DRAFT
+  FLASHPOINT
+  GENESIS
+  HONORANDPROFIT
+  KITARA
+  LUNAR
+  ORDERANDCHAOS
+  MAGNUMOPUS
+  MUMBAD
+  NAPDMULTIPLAYER
+  REDSANDS
+  REIGNANDREVERIE
+  SANSAN
+  SPIN
+  TERMINALDIRECTIVE
+}
+
+enum Faction {
+  ADAM
+  APEX
+  ANARCHS
+  CRIMINAL
+  HAASBIOROID
+  NBN
+  NEUTRALCORP
+  NEUTRALRUNNER
+  SUNNYLEBEAU
+  WEYLANDCONSORTIUM
+}
+
+enum Pack {
+  ALLTHATREMAINS
+  ASTUDYINSTATIC
+  BLOODANDWATER
+  BLOODMONEY
+  BREAKERBAY
+  BUSINESSFIRST
+  CHROMECITY
+  COUNCILOFTHECREST
+  CRIMSONDUST
+  CRIMSONMARS
+  CYBEREXODUS
+  DAEDALUSCOMPLEX
+  DEMOCRACYANDDOGMA
+  DOUBLETIME
+  DOWNTHEWHITENILE
+  EARTHSSCION
+  ESCALATION
+  FEARANDLOATHING
+  FEARTHEMASSES
+  FIRSTCONTACT
+  FREEMARS
+  FUTUREPROOF
+  HUMANITYSSHADOW
+  INTERVENTION
+  KALAGHODA
+  KAMPALAASCENDANT
+  MALATEMPORA
+  MARTIALLAW
+  OLDHOLLYWOOF
+  OPENINGMOVES
+  QUORUM
+  SALSETTEISLAND
+  SECONDTHOUGHTS
+  SOVEREIGNSIGHT
+  STATIONONE
+  THEDEVILANDTHEDRAGON
+  THELIBERATEDMIND
+  THESOURCE
+  THESPACESBETWEEN
+  THEUNDERWAY
+  THEUNIVERSEOFTOMORROW
+  THEVALLEY
+  TRACEAMOUNT
+  TRUECOLORS
+  TWENTYTHREESECONDS
+  UPANDOVER
+  UPSTALK
+  WHATLIESAHEAD
+  WHISPERSINNALUBAALE
+}
+
+enum Side {
+  CORP
+  RUNNER
+}
+
+enum Type {
+  AGENDA
+  ASSET
+  EVENT
+  HARDWARE
+  ICE
+  IDENTITY
+  OPERATION
+  PROGRAM
+  RESOURCE
+  UPGRADE
+}
+
+type Query {
+  searchCards(
+    keywords: [Keywords],
+    name: String,
+    packs:[Pack]
+    side: Side!,
+    types: [Type],
+  ): [Card]
+}
