@@ -11,7 +11,7 @@ type Card {
   id: String!
   illustrator: String!
   influenceLimit: Int
-  keyword: Keyword
+  keyword: String
   memoryCost: Int
   minimumDeckSize: Int
   pack: Pack!
@@ -131,7 +131,7 @@ enum Type {
 
 type Query {
   searchCards(
-    keywords: [Keywords],
+    keywords: [String],
     name: String,
     packs:[Pack]
     side: Side!,

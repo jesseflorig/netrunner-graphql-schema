@@ -1,4 +1,4 @@
-import { searchCards } from "./cards"
+import { getCards } from "./cards"
 
 const resolverMap = {
   Query: {

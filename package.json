@@ -3,7 +3,9 @@
   "version": "1.1.0",
   "description": "GraphQL Schema for Android Netrunner",
   "main": "./lib/index.js",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "rm -rf ./lib && babel src -d lib --copy-files",
     "build:watch": "nodemon --exec npm run build --watch ./src",
@@ -18,7 +20,11 @@
     "type": "git",
     "url": "git+https://github.com/jesseflorig/netrunner-graphql-schema.git"
   },
-  "keywords": ["GraphQL", "Schema", "Netrunner"],
+  "keywords": [
+    "GraphQL",
+    "Schema",
+    "Netrunner"
+  ],
   "author": "Jesse Florig",
   "license": "MIT",
   "bugs": {

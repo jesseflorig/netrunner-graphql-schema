@@ -1,7 +1,5 @@
 const getCards = ({ keywords, name, packs, side, types }) => {
-  return {
-    name: "Card Name"
-  }
+  return [{ title: "Card Name" }]
 }
 
 export { getCards }
