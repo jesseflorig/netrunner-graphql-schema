@@ -33,6 +33,7 @@
   "homepage": "https://github.com/jesseflorig/netrunner-graphql-schema#readme",
   "dependencies": {
     "faker": "^4.1.0",
+    "fuse.js": "^3.3.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3"
   },
@@ -53,6 +54,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "graphql-tag": "^2.10.0",
+    "lodash": "^4.17.11",
     "nodemon": "^1.18.6",
     "prettier": "^1.15.2"
   }
