@@ -3,20 +3,20 @@ type Card {
   agendaPoints: Int
   baseLink: Int
   cost: Int
-  cycle: Cycle!
-  deckLimit: Int!
-  faction: Faction!
+  cycle: String
+  deckLimit: Int
+  faction: String
   factionCost: Int
   flavor: String
   id: String!
-  illustrator: String!
+  illustrator: String
   influenceLimit: Int
   keywords: String
   memoryCost: Int
   minimumDeckSize: Int
-  pack: Pack!
-  position: Int!
-  quantity: Int!
+  pack: String!
+  position: Int
+  quantity: Int
   side: Side!
   strength: Int
   text: String
@@ -24,26 +24,6 @@ type Card {
   trashCost: Int
   type: Type!
   uniqueness: Boolean!
-}
-
-enum Cycle {
-  CREATIONANDCONTROL
-  DATAANDDESTINY
-  DRAFT
-  FLASHPOINT
-  GENESIS
-  HONORANDPROFIT
-  KITARA
-  LUNAR
-  ORDERANDCHAOS
-  MAGNUMOPUS
-  MUMBAD
-  NAPDMULTIPLAYER
-  REDSANDS
-  REIGNANDREVERIE
-  SANSAN
-  SPIN
-  TERMINALDIRECTIVE
 }
 
 enum Faction {
@@ -57,58 +37,6 @@ enum Faction {
   NEUTRALRUNNER
   SUNNYLEBEAU
   WEYLANDCONSORTIUM
-}
-
-enum Pack {
-  ALLTHATREMAINS
-  ASTUDYINSTATIC
-  BLOODANDWATER
-  BLOODMONEY
-  BREAKERBAY
-  BUSINESSFIRST
-  CHROMECITY
-  COUNCILOFTHECREST
-  CRIMSONDUST
-  CRIMSONMARS
-  CYBEREXODUS
-  DAEDALUSCOMPLEX
-  DEMOCRACYANDDOGMA
-  DOUBLETIME
-  DOWNTHEWHITENILE
-  EARTHSSCION
-  ESCALATION
-  FEARANDLOATHING
-  FEARTHEMASSES
-  FIRSTCONTACT
-  FREEMARS
-  FUTUREPROOF
-  HUMANITYSSHADOW
-  INTERVENTION
-  KALAGHODA
-  KAMPALAASCENDANT
-  MALATEMPORA
-  MARTIALLAW
-  OLDHOLLYWOOF
-  OPENINGMOVES
-  QUORUM
-  SALSETTEISLAND
-  SECONDTHOUGHTS
-  SOVEREIGNSIGHT
-  STATIONONE
-  THEDEVILANDTHEDRAGON
-  THELIBERATEDMIND
-  THESOURCE
-  THESPACESBETWEEN
-  THEUNDERWAY
-  THEUNIVERSEOFTOMORROW
-  THEVALLEY
-  TRACEAMOUNT
-  TRUECOLORS
-  TWENTYTHREESECONDS
-  UPANDOVER
-  UPSTALK
-  WHATLIESAHEAD
-  WHISPERSINNALUBAALE
 }
 
 enum Side {
@@ -129,13 +57,38 @@ enum Type {
   UPGRADE
 }
 
+input Filter {
+  advancementCost: Int
+  agendaPoints: Int
+  baseLink: Int
+  cost: Int
+  cycle: String
+  deckLimit: Int
+  faction: String
+  factionCost: Int
+  flavor: String
+  id: String
+  illustrator: String
+  influenceLimit: Int
+  keywords: String
+  memoryCost: Int
+  minimumDeckSize: Int
+  pack: String
+  position: Int
+  quantity: Int
+  side: Side
+  strength: Int
+  text: String
+  trashCost: Int
+  type: Type
+  uniqueness: Boolean
+}
+
 type Query {
   searchCards(
-    keywords: [String],
-    title: String,
-    packs:[Pack]
+    filter: Filter,
     queryString: String,
-    side: Side,
-    types: [Type],
+    reject: Filter
   ): [Card]
+  getDistinct(field: String!): [Card]
 }

@@ -1,5 +1,6 @@
 import Fuse from "fuse.js"
-import Cards from "netrunner-json"
+import _ from "lodash"
+import { Cards } from "netrunner-json"
 
 const searchCfg = {
   distance: 100,
@@ -10,10 +11,19 @@ const searchCfg = {
   threshold: 0.6
 }
 
-const getCards = ({ queryString }) => {
-  const fuse = new Fuse(Cards, searchCfg)
-  const results = fuse.search(queryString)
-  return results
+const getCards = ({ filter, queryString, reject }) => {
+  const filterCards = filter ? _.filter(Cards, filter) : Cards
+  const rejectCards = reject ? _.reject(filterCards, reject) : filterCards
+  return queryString
+    ? new Fuse(rejectCards, searchCfg).search(queryString)
+    : rejectCards
 }
 
-export { getCards }
+const getDistinct = ({ field }) => {
+  return _.chain(Cards)
+    .uniqBy(field)
+    .sortBy(field)
+    .value()
+}
+
+export { getCards, getDistinct }

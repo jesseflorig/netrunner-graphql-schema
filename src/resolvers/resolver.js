@@ -1,10 +1,12 @@
-import { getCards } from "./cards"
+import { getCards, getDistinct } from "./cards"
 
 const resolverMap = {
   Query: {
     searchCards(obj, args, context, info) {
-      const cards = getCards(args)
-      return cards
+      return getCards(args)
+    },
+    getDistinct(obj, args, context, info) {
+      return getDistinct(args)
     }
   }
 }
