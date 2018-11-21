@@ -5,7 +5,7 @@ type Card {
   cost: Int
   cycle: String
   deckLimit: Int
-  faction: String
+  faction: Faction
   factionCost: Int
   flavor: String
   id: String!
@@ -29,12 +29,14 @@ type Card {
 enum Faction {
   ADAM
   APEX
-  ANARCHS
+  ANARCH
   CRIMINAL
   HAASBIOROID
+  JINTEKI
   NBN
   NEUTRALCORP
   NEUTRALRUNNER
+  SHAPER
   SUNNYLEBEAU
   WEYLANDCONSORTIUM
 }
@@ -62,9 +64,8 @@ input Filter {
   agendaPoints: Int
   baseLink: Int
   cost: Int
-  cycle: String
   deckLimit: Int
-  faction: String
+  faction: Faction
   factionCost: Int
   flavor: String
   id: String
@@ -87,7 +88,7 @@ input Filter {
 type Query {
   searchCards(
     filter: Filter,
-    queryString: String,
+    fuzzyString: String,
     reject: Filter
   ): [Card]
   getDistinct(field: String!): [Card]

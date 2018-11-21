@@ -8,14 +8,16 @@ const searchCfg = {
   location: 0,
   maxPatternLength: 32,
   minMatchCharLength: 1,
-  threshold: 0.6
+  shouldSort: true,
+  threshold: 0.6,
+  tokenize: true
 }
 
-const getCards = ({ filter, queryString, reject }) => {
+const getCards = ({ filter, fuzzyString, reject }) => {
   const filterCards = filter ? _.filter(Cards, filter) : Cards
   const rejectCards = reject ? _.reject(filterCards, reject) : filterCards
-  return queryString
-    ? new Fuse(rejectCards, searchCfg).search(queryString)
+  return fuzzyString
+    ? new Fuse(rejectCards, searchCfg).search(fuzzyString)
     : rejectCards
 }
 
