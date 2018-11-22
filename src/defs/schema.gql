@@ -1,30 +1,143 @@
+# TODO: Generate IDs pack-cardnumber
+# TODO: Rename keywords to subtypes
+# TODO: Rename factionCost to influenceCost
+# TODO: Rename cost to playCost (Operations)
+# TODO: Rename cost to rezCost (Assets/Ice)
+# TODO: Rename position to cardNumber
 """A Netrunner card"""
-type Card {
-  advancementCost: Int
-  agendaPoints: Int
-  baseLink: Int
-  cost: Int
+interface Card {
   cycle: String
-  deckLimit: Int
-  faction: Faction
-  factionCost: Int
+  faction: Faction!
   flavor: String
   id: String!
-  illustrator: String
-  influenceLimit: Int
-  keywords: String
-  memoryCost: Int
-  minimumDeckSize: Int
+  illustrator: String!
+  keywords: String!
   pack: String!
-  position: Int
-  quantity: Int
+  position: Int!
+  quantity: Int!
   side: Side!
-  strength: Int
   text: String
   title: String!
-  trashCost: Int
   type: Type!
   uniqueness: Boolean!
+}
+
+type Agenda implements Card {
+  advancementCost: Int!
+  agendaPoints: Int!
+  cost: Int!
+  cycle: String!
+  faction: Faction!
+  factionCost: Int!
+  flavor: String
+  illustrator: String!
+  id: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String
+  title: String!
+  type: Type!
+  uniqueness: Boolean! 
+}
+
+type Asset implements Card {
+  cost: Int!
+  cycle: String!
+  faction: Faction!
+  factionCost: Int!
+  flavor: String
+  illustrator: String!
+  id: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String!
+  trashCost: Int!
+  title: String!
+  type: Type!
+  uniqueness: Boolean! 
+}
+
+type Ice implements Card {
+  cost: Int!
+  cycle: String!
+  faction: Faction!
+  factionCost: Int!
+  flavor: String
+  illustrator: String!
+  id: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  strength: Int
+  text: String!
+  title: String!
+  type: Type!
+  uniqueness: Boolean! 
+}
+
+type Identity implements Card {
+  cycle: String!
+  faction: Faction!
+  flavor: String
+  illustrator: String!
+  id: String!
+  influenceLimit: Int
+  keywords: String!
+  minDeckSize: Int!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String!
+  title: String!
+  type: Type!
+  uniqueness: Boolean!
+}
+
+type Operation implements Card {
+  cost: Int!
+  cycle: String!
+  faction: Faction!
+  factionCost: Int!
+  flavor: String
+  illustrator: String!
+  id: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String!
+  title: String!
+  type: Type!
+  uniqueness: Boolean! 
+}
+
+type Upgrade implements Card {
+  cost: Int!
+  cycle: String!
+  faction: Faction!
+  factionCost: Int!
+  flavor: String
+  illustrator: String!
+  id: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String!
+  title: String!
+  type: Type!
+  uniqueness: Boolean! 
 }
 
 """The faction a card belongs to"""
