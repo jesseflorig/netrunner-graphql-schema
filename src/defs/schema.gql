@@ -1,3 +1,4 @@
+"""A Netrunner card"""
 type Card {
   advancementCost: Int
   agendaPoints: Int
@@ -26,6 +27,7 @@ type Card {
   uniqueness: Boolean!
 }
 
+"""The faction a card belongs to"""
 enum Faction {
   ADAM
   APEX
@@ -41,11 +43,13 @@ enum Faction {
   WEYLANDCONSORTIUM
 }
 
+"""The player side a card belongs to"""
 enum Side {
   CORP
   RUNNER
 }
 
+"""The main card type"""
 enum Type {
   AGENDA
   ASSET
@@ -59,6 +63,7 @@ enum Type {
   UPGRADE
 }
 
+"""The card properties available to advanced search"""
 input Filter {
   advancementCost: Int
   agendaPoints: Int
@@ -86,10 +91,19 @@ input Filter {
 }
 
 type Query {
+  """Search for cards"""
   searchCards(
+    """Includes only cards that match all fields specified"""
     filter: Filter,
-    fuzzyString: String,
+    """Fields to use in fuzzy search (default: title)"""
+    fuzzyFields: [String],
+    """Returns cards that fuzzy match on fuzzyFields"""
+    fuzzySearch: String,
+    """Determines sort fields on matched Cards (default: title)"""
+    orderBy: [String],
+    """Excludes cards that match all fields specified"""
     reject: Filter
   ): [Card]
+  """Return a list of unique values for a field"""
   getDistinct(field: String!): [Card]
 }
