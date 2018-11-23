@@ -8,12 +8,20 @@ const resolverMap = {
           return "Agenda"
         case "ASSET":
           return "Asset"
+        case "EVENT":
+          return "Event"
+        case "HARDWARE":
+          return "Hardware"
         case "ICE":
           return "Ice"
         case "IDENTITY":
-          return "Identity"
+          return card.side === "CORP" ? "CorpIdentity" : "RunnerIdentity"
         case "OPERATION":
           return "Operation"
+        case "PROGRAM":
+          return "Program"
+        case "RESOURCE":
+          return "Resource"
         case "UPGRADE":
           return "Upgrade"
       }

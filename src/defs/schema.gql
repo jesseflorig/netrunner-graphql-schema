@@ -1,9 +1,15 @@
 # TODO: Generate IDs pack-cardnumber
 # TODO: Rename keywords to subtypes
 # TODO: Rename factionCost to influenceCost
-# TODO: Rename cost to playCost (Operations)
-# TODO: Rename cost to rezCost (Assets/Ice)
+# TODO: Rename cost to playCost (Operation/Event)
+# TODO: Rename cost to rezCost (Asset/Ice)
+# TODO: Rename cost to installCost (Program/Hardware)
 # TODO: Rename position to cardNumber
+# TODO: Rename quantity to packQty
+# TODO: Resolve pack to Pack
+# TODO: Resolve cycle to Cycle
+# TODO: Add Formats
+
 """A Netrunner card"""
 interface Card {
   cycle: String
@@ -22,13 +28,14 @@ interface Card {
   uniqueness: Boolean!
 }
 
+"""A Corporation Agenda card"""
 type Agenda implements Card {
   advancementCost: Int!
   agendaPoints: Int!
-  cost: Int!
+  cost: Int
   cycle: String!
   faction: Faction!
-  factionCost: Int!
+  factionCost: Int
   flavor: String
   illustrator: String!
   id: String!
@@ -43,11 +50,12 @@ type Agenda implements Card {
   uniqueness: Boolean! 
 }
 
+"""A Corporation Asset card"""
 type Asset implements Card {
-  cost: Int!
+  cost: Int
   cycle: String!
   faction: Faction!
-  factionCost: Int!
+  factionCost: Int
   flavor: String
   illustrator: String!
   id: String!
@@ -63,27 +71,8 @@ type Asset implements Card {
   uniqueness: Boolean! 
 }
 
-type Ice implements Card {
-  cost: Int!
-  cycle: String!
-  faction: Faction!
-  factionCost: Int!
-  flavor: String
-  illustrator: String!
-  id: String!
-  keywords: String!
-  pack: String!
-  position: Int!
-  quantity: Int!
-  side: Side!
-  strength: Int
-  text: String!
-  title: String!
-  type: Type!
-  uniqueness: Boolean! 
-}
-
-type Identity implements Card {
+"""A Corporation Identity card"""
+type CorpIdentity implements Card {
   cycle: String!
   faction: Faction!
   flavor: String
@@ -102,11 +91,33 @@ type Identity implements Card {
   uniqueness: Boolean!
 }
 
-type Operation implements Card {
-  cost: Int!
+"""A Corporation Ice card"""
+type Ice implements Card {
+  cost: Int
   cycle: String!
   faction: Faction!
-  factionCost: Int!
+  factionCost: Int
+  flavor: String
+  illustrator: String!
+  id: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  strength: Int
+  text: String!
+  title: String!
+  type: Type!
+  uniqueness: Boolean! 
+}
+
+"""A Corporation Operation card"""
+type Operation implements Card {
+  cost: Int
+  cycle: String!
+  faction: Faction!
+  factionCost: Int
   flavor: String
   illustrator: String!
   id: String!
@@ -121,11 +132,12 @@ type Operation implements Card {
   uniqueness: Boolean! 
 }
 
+"""A Corporation Upgrade card"""
 type Upgrade implements Card {
-  cost: Int!
+  cost: Int
   cycle: String!
   faction: Faction!
-  factionCost: Int!
+  factionCost: Int
   flavor: String
   illustrator: String!
   id: String!
@@ -138,6 +150,109 @@ type Upgrade implements Card {
   title: String!
   type: Type!
   uniqueness: Boolean! 
+}
+
+"""A Runner Event card"""
+type Event implements Card {
+  cost: Int
+  cycle: String
+  faction: Faction!
+  factionCost: Int
+  flavor: String
+  id: String!
+  illustrator: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String
+  title: String!
+  type: Type!
+  uniqueness: Boolean!
+}
+
+"""A Runner Hardware card"""
+type Hardware implements Card {
+  cost: Int
+  cycle: String
+  faction: Faction!
+  factionCost: Int
+  flavor: String
+  id: String!
+  illustrator: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String
+  title: String!
+  type: Type!
+  uniqueness: Boolean!
+}
+
+"""A Runner Program card"""
+type Program implements Card {
+  cost: Int
+  cycle: String
+  faction: Faction!
+  factionCost: Int
+  flavor: String
+  id: String!
+  illustrator: String!
+  keywords: String!
+  memoryCost: Int!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  strength: Int
+  text: String
+  title: String!
+  type: Type!
+  uniqueness: Boolean!
+}
+
+"""A Runner Resource card"""
+type Resource implements Card {
+  cost: Int
+  cycle: String
+  faction: Faction!
+  factionCost: Int
+  flavor: String
+  id: String!
+  illustrator: String!
+  keywords: String!
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String
+  title: String!
+  type: Type!
+  uniqueness: Boolean!
+}
+
+"""A Runner Identity card"""
+type RunnerIdentity implements Card {
+  baseLink: Int!
+  cycle: String
+  faction: Faction!
+  flavor: String
+  id: String!
+  illustrator: String!
+  keywords: String!
+  minDeckSize: Int!
+  influenceLimit: Int
+  pack: String!
+  position: Int!
+  quantity: Int!
+  side: Side!
+  text: String
+  title: String!
+  type: Type!
+  uniqueness: Boolean!
 }
 
 """The faction a card belongs to"""
