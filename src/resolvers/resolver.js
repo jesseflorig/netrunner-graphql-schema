@@ -1,4 +1,4 @@
-import { getCards, getDistinct } from "./cards"
+import { getCardById, getDistinctByField, searchCards } from "./cards"
 
 const resolverMap = {
   Card: {
@@ -30,11 +30,14 @@ const resolverMap = {
     }
   },
   Query: {
-    searchCards(obj, args, context, info) {
-      return getCards(args)
+    getCardById(obj, args, contect, info) {
+      return getCardById(args)
     },
-    getDistinct(obj, args, context, info) {
-      return getDistinct(args)
+    getDistinctByField(obj, args, context, info) {
+      return getDistinctByField(args)
+    },
+    searchCards(obj, args, context, info) {
+      return searchCards(args)
     }
   }
 }

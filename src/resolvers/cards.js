@@ -2,7 +2,18 @@ import Fuse from "fuse.js"
 import _ from "lodash"
 import { Cards } from "netrunner-json"
 
-const getCards = ({ filter, fuzzyFields, fuzzySearch, orderBy, reject }) => {
+const getCardById = ({ id }) => {
+  return _.find(Cards, { id: id })
+}
+
+const getDistinctByField = ({ field }) => {
+  return _.chain(Cards)
+    .uniqBy(field)
+    .sortBy(field)
+    .value()
+}
+
+const searchCards = ({ filter, fuzzyFields, fuzzySearch, orderBy, reject }) => {
   const searchCfg = {
     distance: 100,
     keys: fuzzyFields || ["title"],
@@ -21,11 +32,4 @@ const getCards = ({ filter, fuzzyFields, fuzzySearch, orderBy, reject }) => {
   return _.orderBy(searchCards, orderBy || ["title"])
 }
 
-const getDistinct = ({ field }) => {
-  return _.chain(Cards)
-    .uniqBy(field)
-    .sortBy(field)
-    .value()
-}
-
-export { getCards, getDistinct }
+export { getCardById, getDistinctByField, searchCards }

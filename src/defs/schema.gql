@@ -17,7 +17,7 @@ interface Card {
   flavor: String
   id: String!
   illustrator: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -39,7 +39,7 @@ type Agenda implements Card {
   flavor: String
   illustrator: String!
   id: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -59,7 +59,7 @@ type Asset implements Card {
   flavor: String
   illustrator: String!
   id: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -79,7 +79,7 @@ type CorpIdentity implements Card {
   illustrator: String!
   id: String!
   influenceLimit: Int
-  keywords: String!
+  keywords: String
   minDeckSize: Int!
   pack: String!
   position: Int!
@@ -100,7 +100,7 @@ type Ice implements Card {
   flavor: String
   illustrator: String!
   id: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -121,7 +121,7 @@ type Operation implements Card {
   flavor: String
   illustrator: String!
   id: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -141,7 +141,7 @@ type Upgrade implements Card {
   flavor: String
   illustrator: String!
   id: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -161,7 +161,7 @@ type Event implements Card {
   flavor: String
   id: String!
   illustrator: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -181,7 +181,7 @@ type Hardware implements Card {
   flavor: String
   id: String!
   illustrator: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -201,7 +201,7 @@ type Program implements Card {
   flavor: String
   id: String!
   illustrator: String!
-  keywords: String!
+  keywords: String
   memoryCost: Int!
   pack: String!
   position: Int!
@@ -223,7 +223,7 @@ type Resource implements Card {
   flavor: String
   id: String!
   illustrator: String!
-  keywords: String!
+  keywords: String
   pack: String!
   position: Int!
   quantity: Int!
@@ -242,7 +242,7 @@ type RunnerIdentity implements Card {
   flavor: String
   id: String!
   illustrator: String!
-  keywords: String!
+  keywords: String
   minDeckSize: Int!
   influenceLimit: Int
   pack: String!
@@ -319,6 +319,10 @@ input Filter {
 }
 
 type Query {
+  """Get a card based on card id"""
+  getCardById(id: String!): Card
+  """Return a list of unique values for a field"""
+  getDistinctByField(field: String!): [Card]
   """Search for cards"""
   searchCards(
     """Includes only cards that match all fields specified"""
@@ -332,6 +336,4 @@ type Query {
     """Excludes cards that match all fields specified"""
     reject: Filter
   ): [Card]
-  """Return a list of unique values for a field"""
-  getDistinct(field: String!): [Card]
 }
