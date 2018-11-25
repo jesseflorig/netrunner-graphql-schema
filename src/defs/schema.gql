@@ -291,6 +291,39 @@ enum Type {
   UPGRADE
 }
 
+enum ExpansionType {
+  CORE
+  CYCLE
+  DELUXE
+  SPECIAL
+}
+
+interface Expansion {
+  id: String!
+  name: String!
+  type: ExpansionType!
+}
+
+type Cycle implements Expansion {
+  id: String!
+  name: String!
+  type: ExpansionType!
+  packs: [Pack]!
+}
+
+type NonCycle implements Expansion {
+  id: String!
+  name: String!
+  releaseDate: String!
+  type: ExpansionType!
+}
+
+type Pack {
+  id: String!
+  name: String!
+  releaseDate: String!
+}
+
 type Deck {
   cards: [Card]
   id: String!
