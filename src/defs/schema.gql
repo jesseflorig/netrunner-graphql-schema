@@ -291,6 +291,12 @@ enum Type {
   UPGRADE
 }
 
+type Deck {
+  cards: [Card]
+  id: String!
+  name: String!
+}
+
 """The card properties available to advanced search"""
 input Filter {
   advancementCost: Int
