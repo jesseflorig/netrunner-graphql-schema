@@ -29,7 +29,7 @@ const searchCards = ({ filter, fuzzyFields, fuzzySearch, orderBy, reject }) => {
   const searchCards = fuzzySearch
     ? new Fuse(rejectCards, searchCfg).search(fuzzySearch)
     : rejectCards
-  return _.orderBy(searchCards, orderBy || ["title"])
+  return orderBy ? _.orderBy(searchCards, orderBy) : searchCards
 }
 
 export { getCardById, getDistinctByField, searchCards }
