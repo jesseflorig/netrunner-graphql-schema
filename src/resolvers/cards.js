@@ -1,5 +1,5 @@
 import Fuse from "fuse.js"
-import { chain, filter, find, orderBy, reject } from "lodash"
+import { filter, find, orderBy, reject, sortBy, uniqBy } from "lodash"
 import { pipe } from "lodash/fp"
 import { Cards } from "netrunner-json"
 
@@ -8,10 +8,18 @@ const getCardById = ({ id }) => {
 }
 
 const getDistinctByField = ({ field }) => {
-  return chain(Cards)
-    .uniqBy(field)
-    .sortBy(field)
-    .value()
+  return pipe(
+    uniqField(field),
+    sortField(field)
+  )(Cards)
+}
+
+const uniqField = field => Cards => {
+  return uniqBy(Cards, field)
+}
+
+const sortField = field => Cards => {
+  return sortBy(Cards, field)
 }
 
 const searchCards = ({
