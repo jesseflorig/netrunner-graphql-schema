@@ -332,29 +332,9 @@ type Deck {
 
 """The card properties available to advanced search"""
 input Filter {
-  advancementCost: Int
-  agendaPoints: Int
-  baseLink: Int
-  cost: Int
-  deckLimit: Int
-  faction: Faction
-  factionCost: Int
-  flavor: String
-  id: String
-  illustrator: String
-  influenceLimit: Int
-  keywords: String
-  memoryCost: Int
-  minimumDeckSize: Int
-  pack: String
-  position: Int
-  quantity: Int
-  side: Side
-  strength: Int
-  text: String
-  trashCost: Int
-  type: Type
-  uniqueness: Boolean
+  field: String!
+  comparator: String!
+  value: String!
 }
 
 type Query {
@@ -365,14 +345,12 @@ type Query {
   """Search for cards"""
   searchCards(
     """Includes only cards that match all fields specified"""
-    filters: Filter,
+    filters: [Filter],
     """Fields to use in fuzzy search (default: title)"""
     fuzzyFields: [String],
     """Returns cards that fuzzy match on fuzzyFields"""
     fuzzySearch: String,
     """Excludes cards that match all fields specified"""
-    notFilters: Filter
-    """Determines sort fields on matched Cards (default: title)"""
     sortFields: [String],
   ): [Card]
 }

@@ -1,5 +1,5 @@
 import Fuse from "fuse.js"
-import { filter, find, orderBy, reject, sortBy, uniqBy } from "lodash"
+import { filter, find, map, orderBy, reject, sortBy, uniqBy } from "lodash"
 import { pipe } from "lodash/fp"
 import { Cards } from "netrunner-json"
 
@@ -31,26 +31,37 @@ const searchCards = ({
 }) => {
   return pipe(
     filterCards(filters),
-    rejectCards(notFilters),
     fuzzyCards(fuzzySearch, fuzzyFields),
     sortCards(sortFields)
   )(Cards)
 }
 
 const filterCards = filters => Cards => {
-  return filters ? filter(Cards, filters) : Cards
-}
-
-const rejectCards = notFilters => Cards => {
-  return notFilters ? reject(Cards, notFilters) : Cards
+  // return filters ? filter(Cards, filters) : Cards
+  let filteredCards = Cards
+  map(filters, ft => {
+    let filterObj = {}
+    filterObj[ft.field] = ft.value
+    const currentCards = filteredCards
+    switch (ft.comparator) {
+      case "ne":
+        filteredCards = reject(currentCards, filterObj)
+        break
+      case "eq":
+      default:
+        filteredCards = filter(currentCards, filterObj)
+    }
+  })
+  return filteredCards
 }
 
 const fuzzyCards = (fuzzySearch, fuzzyFields) => Cards => {
   if (fuzzySearch) {
     const searchCfg = {
       distance: 100,
-      keys: fuzzyFields || ["title"],
+      keys: fuzzyFields || ["title", "text"],
       location: 0,
+      matchAllTokens: true,
       maxPatternLength: 32,
       minMatchCharLength: 1,
       shouldSort: true,
