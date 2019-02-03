@@ -365,14 +365,14 @@ type Query {
   """Search for cards"""
   searchCards(
     """Includes only cards that match all fields specified"""
-    filter: Filter,
+    filters: Filter,
     """Fields to use in fuzzy search (default: title)"""
     fuzzyFields: [String],
     """Returns cards that fuzzy match on fuzzyFields"""
     fuzzySearch: String,
-    """Determines sort fields on matched Cards (default: title)"""
-    orderBy: [String],
     """Excludes cards that match all fields specified"""
-    reject: Filter
+    notFilters: Filter
+    """Determines sort fields on matched Cards (default: title)"""
+    sortFields: [String],
   ): [Card]
 }

@@ -24,9 +24,15 @@ const resolverMap = {
           return "Resource"
         case "UPGRADE":
           return "Upgrade"
+        default:
+          console.log(`Card type "${card.type}" not recognized!`)
       }
-
       return null
+    }
+  },
+  Expansion: {
+    __resolveType(expansion, context, info) {
+      return expansion.type === "CYCLE" ? "Cycle" : "NonCycle"
     }
   },
   Query: {
